@@ -1,4 +1,6 @@
-﻿namespace WebServer.Enums
+﻿using System;
+
+namespace WebServer.Enums
 {
     public enum HttpMethodType
     {
