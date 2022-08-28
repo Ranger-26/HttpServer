@@ -4,19 +4,19 @@ using WebServer.Enums;
 
 namespace WebServer.Structs
 {
-    public struct MethodIdentifier : IEquatable<MethodIdentifier>
+    public struct HttpRequestLine : IEquatable<HttpRequestLine>
     {
         public string Endpoint;
         public HttpMethodType HttpMethodType;
 
-        public bool Equals(MethodIdentifier other)
+        public bool Equals(HttpRequestLine other)
         {
             return Endpoint == other.Endpoint && HttpMethodType == other.HttpMethodType;
         }
 
         public override bool Equals(object obj)
         {
-            return obj is MethodIdentifier other && Equals(other);
+            return obj is HttpRequestLine other && Equals(other);
         }
 
         public override int GetHashCode()

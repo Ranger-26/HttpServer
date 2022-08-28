@@ -21,21 +21,22 @@ namespace WebServer.Core
         public void StartServer()
         {
             _tcpListener.Start();
-            while (true)
-            {
-                Console.Write("Waiting for a connection... ");
-
-                // Perform a blocking call to accept requests.
-                // You could also use server.AcceptSocket() here.
-                TcpClient client = _tcpListener.AcceptTcpClient();
-                Console.WriteLine("Connected!");
-                HandleTcpConnection(client);
-
-            }
+            StartMainLoop();
         }
 
 
-        void HandleTcpConnection(TcpClient client)
+        private void StartMainLoop()
+        {
+            while (true)
+            {
+                Console.WriteLine("Waiting for a connection... ");
+                TcpClient client = _tcpListener.AcceptTcpClient();
+                Console.WriteLine("Found connection!");
+                HandleTcpConnection(client);
+            }
+        }
+
+        private void HandleTcpConnection(TcpClient client)
         {
             var thread = new Thread(() =>
             {
@@ -46,7 +47,7 @@ namespace WebServer.Core
 
 
                 string data = System.Text.Encoding.ASCII.GetString(_incomingStream, 0, i);
-                Console.WriteLine("Received: {0}", data);
+                Console.WriteLine("Received: " + Environment.NewLine + data);
 
 
                 var result = "<h1>Hello, world!</h1>";

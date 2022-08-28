@@ -10,8 +10,8 @@ namespace WebServer.Core
 {
     internal static class HttpMessageHandler
     {
-        private static Dictionary<MethodIdentifier, MethodInfo> _allMethods =
-            new Dictionary<MethodIdentifier, MethodInfo>();
+        private static Dictionary<HttpRequestLine, MethodInfo> _allMethods =
+            new Dictionary<HttpRequestLine, MethodInfo>();
 
         internal static void RegisterEndpoints()
         {
@@ -25,7 +25,7 @@ namespace WebServer.Core
                 foreach (var attribute in method.GetCustomAttributes())
                 {
                     var httpAtr = (HttpMethod) attribute;
-                    var methodId = new MethodIdentifier()
+                    var methodId = new HttpRequestLine()
                     {
                         Endpoint = httpAtr.Endpoint,
                         HttpMethodType = httpAtr.HttpMethodType
@@ -43,7 +43,7 @@ namespace WebServer.Core
             }
         }
 
-        internal static void TryInvokeMethod(MethodIdentifier identifier)
+        internal static void TryInvokeMethod(HttpRequestLine identifier)
         {
             if (!_allMethods.ContainsKey(identifier))
             {
