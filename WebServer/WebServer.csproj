@@ -39,7 +39,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Attributes\HttpMethod.cs" />
-        <Compile Include="Internal\TcpServer.cs" />
+        <Compile Include="Core\TcpServer.cs" />
         <Compile Include="Enums\HttpMethodType.cs" />
         <Compile Include="Extensions\ReflectionExtensions.cs" />
         <Compile Include="Program.cs" />

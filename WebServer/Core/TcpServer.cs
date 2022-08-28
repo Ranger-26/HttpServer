@@ -4,7 +4,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
-namespace WebServer.Internal
+namespace WebServer.Core
 {
     internal class TcpServer
     {
