@@ -1,5 +1,5 @@
 ﻿using System;
-using WebServer.Core;
+using WebServer.Enums;
 
 namespace WebServer.Attributes
 {

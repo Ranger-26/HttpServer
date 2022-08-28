@@ -1,4 +1,4 @@
-﻿using WebServer.Core;
+﻿using WebServer.Internal;
 
 namespace WebServer
 {

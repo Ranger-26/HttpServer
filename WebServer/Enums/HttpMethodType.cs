@@ -1,4 +1,4 @@
-﻿namespace WebServer.Core
+﻿namespace WebServer.Enums
 {
     public enum HttpMethodType
     {

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading;
 
-namespace WebServer.Core
+namespace WebServer.Internal
 {
-    public class TcpServer
+    internal class TcpServer
     {
         private TcpListener _tcpListener;
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WebServer.Core.Extensions
+namespace WebServer.Extensions
 {
     public static class ReflectionExtensions
     {
