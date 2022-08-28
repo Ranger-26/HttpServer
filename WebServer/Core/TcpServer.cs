@@ -14,6 +14,7 @@ namespace WebServer.Core
         
         public TcpServer(int port, string ip)
         {
+            HttpMessageHandler.RegisterEndpoints();
             _tcpListener = new TcpListener(IPAddress.Parse(ip), port);
         }
 

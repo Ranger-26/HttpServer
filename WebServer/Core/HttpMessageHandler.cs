@@ -33,6 +33,7 @@ namespace WebServer.Core
                     try
                     {
                         _allMethods.Add(methodId, method);
+                        Console.WriteLine($"Succesfully added {methodId} with method name {method.Name} to dictionary!");
                     }
                     catch (Exception e)
                     {
@@ -42,7 +43,7 @@ namespace WebServer.Core
             }
         }
 
-        public static void TryInvokeMethod(MethodIdentifier identifier)
+        internal static void TryInvokeMethod(MethodIdentifier identifier)
         {
             if (!_allMethods.ContainsKey(identifier))
             {
@@ -51,7 +52,7 @@ namespace WebServer.Core
             }
 
             _allMethods[identifier].Invoke(null, Array.Empty<object>());
-            Console.WriteLine($"Succesfully invoked method with identifier {identifier}");
         }
+            
     }
 }
