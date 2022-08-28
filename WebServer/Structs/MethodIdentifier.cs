@@ -26,5 +26,10 @@ namespace WebServer.Structs
                 return ((Endpoint != null ? Endpoint.GetHashCode() : 0) * 397) ^ (int) HttpMethodType;
             }
         }
+
+        public override string ToString()
+        {
+            return $"Endpoint: {Endpoint}, MethodType: {HttpMethodType}";
+        }
     }
 }

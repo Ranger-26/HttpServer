@@ -21,5 +21,18 @@ namespace WebServer.Extensions
 
             return false;
         }
+
+        public static bool IsStaticMethod(this MethodInfo info)
+        {
+            return info.IsStatic;
+        }
+
+        public static IEnumerable<MethodInfo> GetMethodsWithAttribute<T>() where T : Attribute
+        {
+            return Assembly.GetExecutingAssembly().GetTypes()
+                .SelectMany(t => t.GetMethods())
+                .Where(m => m.GetCustomAttributes(typeof(T), false).Length > 0)
+                .ToArray();
+        }
     }
 }
