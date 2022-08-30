@@ -2,6 +2,7 @@
 using WebServer.Attributes;
 using WebServer.Core;
 using WebServer.Enums;
+using WebServer.Extensions;
 
 namespace WebServer
 {
@@ -9,7 +10,11 @@ namespace WebServer
     {
         public static void Main(string[] args)
         {
-            new TcpServer(13000, "127.0.0.1").StartServer();
+            var request = "GET / HTTP/1.1\r\nuser-agent: Thunder Client (https://www.thunderclient.com)\r\naccept: /\r\ncontent-type: application/json\r\ncontent-length: 12\r\naccept-encoding: gzip, deflate, br\r\nHost: 127.0.0.1:13000\r\nConnection: close\r\n\r\nTesting body";
+            
+            Console.WriteLine(request.GetHttpRequestInfo());
+
+            //new TcpServer(7777, "127.0.0.1").StartServer();
         }
     }
 

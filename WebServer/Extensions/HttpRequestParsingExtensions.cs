@@ -2,14 +2,47 @@
 using WebServer.Attributes;
 using WebServer.Enums;
 using WebServer.Structs;
-
+using System.Collections.Generic;
 namespace WebServer.Extensions
 {
     public static class HttpRequestParsingExtensions
     {
         public static HttpRequestInfo GetHttpRequestInfo(this string str)
         {
-            return new HttpRequestInfo();
+            //get string lines
+            string[] allLines = str.GetStringLines();
+            //get request type and endpoint
+            HttpRequestLine httpRequestLine = allLines[0].GetHttpRequestLine();
+
+            //process headers
+            int index = 1;
+            var headers = new Dictionary<string, string>();
+            while(index > allLines.Length && allLines[index] != string.Empty)
+            {
+                var curString = allLines[index];
+                string[] stringArr = curString.Split(':');
+                if (stringArr.Length > 1)
+                {
+                    headers.Add(stringArr[0], stringArr[1]);
+                }
+                index++;
+            }
+
+            //process request body
+            string body = string.Empty;
+            if (index + 1 < allLines.Length)
+            {
+                for (int i = index + 1; i < allLines.Length; i++)
+                {
+                    body += allLines[i];
+                }
+            }
+            return new HttpRequestInfo()
+            {
+                HttpRequestLine = httpRequestLine,
+                Headers = headers,
+                Body = body
+            };
         }
 
         public static HttpRequestLine GetHttpRequestLine(this string str)
