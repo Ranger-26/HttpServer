@@ -43,16 +43,15 @@ namespace WebServer.Core
             }
         }
 
-        internal static void TryInvokeMethod(HttpRequestLine identifier)
+        internal static void TryInvokeMethod(HttpRequestInfo identifier)
         {
-            if (!_allMethods.ContainsKey(identifier))
+            if (!_allMethods.ContainsKey(identifier.HttpRequestLine))
             {
                 Console.WriteLine($"Could not find method identifier {identifier} in dictionary, using default");
                 return;
             }
 
-            _allMethods[identifier].Invoke(null, Array.Empty<object>());
+            _allMethods[identifier.HttpRequestLine].Invoke(null, Array.Empty<object>());
         }
-            
     }
 }

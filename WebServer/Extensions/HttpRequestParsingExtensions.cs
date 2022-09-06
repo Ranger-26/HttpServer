@@ -17,7 +17,7 @@ namespace WebServer.Extensions
             //process headers
             int index = 1;
             var headers = new Dictionary<string, string>();
-            while(index > allLines.Length && allLines[index] != string.Empty)
+            while(index < allLines.Length && allLines[index] != string.Empty)
             {
                 var curString = allLines[index];
                 string[] stringArr = curString.Split(':');
@@ -48,10 +48,7 @@ namespace WebServer.Extensions
         public static HttpRequestLine GetHttpRequestLine(this string str)
         {
             string[] split = str.Split(' ');
-            foreach (var s in split)
-            {
-                Console.WriteLine(s);
-            }
+
             HttpMethodType method;
             if (!Enum.TryParse(split[0], true, out method))
             {
