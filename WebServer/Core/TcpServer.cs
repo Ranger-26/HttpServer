@@ -45,8 +45,6 @@ namespace WebServer.Core
 
                 int i = stream.Read(_incomingStream, 0, _incomingStream.Length);
 
-
-
                 string data = System.Text.Encoding.ASCII.GetString(_incomingStream, 0, i);
                 Console.WriteLine("Received: " + Environment.NewLine + data);
 
@@ -55,7 +53,7 @@ namespace WebServer.Core
                 var sendBuf = Encoding.UTF8.GetBytes(
                     "HTTP/1.0 200 OK" + Environment.NewLine
                                       + "Content-Length: " + result.Length + Environment.NewLine
-                                      + "Content-Type: " + "text/plain" + Environment.NewLine
+                                      + "Content-Type: " + "text/html" + Environment.NewLine
                                       + Environment.NewLine
                                       + result
                                       + Environment.NewLine + Environment.NewLine);
