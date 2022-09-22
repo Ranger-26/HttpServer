@@ -8,7 +8,7 @@ namespace WebServer.Structs
 {
     public struct HttpResponseInfo
     {
-        public int HttpCode;
+        public string HttpCodeLine;
 
         public Dictionary<string, string> Headers;
 
@@ -16,7 +16,16 @@ namespace WebServer.Structs
 
         public override string ToString()
         {
-            return base.ToString();
+            string s = $"{HttpCodeLine}"+Environment.NewLine;
+            foreach (var val in Headers)
+            {
+                s += val.Key + ":" + val.Value + Environment.NewLine;
+            }
+            s += Environment.NewLine;
+            s += Body;
+            s += Environment.NewLine;
+            s += Environment.NewLine;
+            return s;
         }
     }
 }
