@@ -51,7 +51,7 @@ namespace WebServer.Core
                 return;
             }
 
-            _allMethods[identifier.HttpRequestLine].Invoke(null, Array.Empty<object>());
+            _allMethods[identifier.HttpRequestLine].Invoke(null, new object[] { identifier });
         }
     }
 }

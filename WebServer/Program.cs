@@ -3,6 +3,7 @@ using WebServer.Attributes;
 using WebServer.Core;
 using WebServer.Enums;
 using WebServer.Extensions;
+using WebServer.Structs;
 
 namespace WebServer
 {
@@ -17,7 +18,7 @@ namespace WebServer
     public static class Test
     {
         [HttpMethod("/favicon.ico", HttpMethodType.GET)]
-        public static void TestGet()
+        public static void TestGet(HttpRequestInfo info)
         {
             Console.WriteLine("Recieved a get request!");
         }
