@@ -13,7 +13,8 @@ namespace WebServer.Extensions
         {
             foreach (var par in info.GetParameters())
             {
-                if (par.GetType() == parameter)
+                Console.WriteLine($"{par.ParameterType}, {parameter}");
+                if (par.ParameterType == parameter)
                 {
                     return true;
                 }
