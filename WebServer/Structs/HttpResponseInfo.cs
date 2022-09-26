@@ -27,5 +27,19 @@ namespace WebServer.Structs
             s += Environment.NewLine;
             return s;
         }
+
+        public static HttpResponseInfo GetDefault()
+        {
+            return new HttpResponseInfo()
+            {
+                HttpCodeLine = "HTTP/1.0 200 OK",
+                Headers = new Dictionary<string, string>()
+                {
+                    {"Content-Length", $"22"},
+                    {"Content-Type", "text/html"}
+                },
+                Body = "<h1>Hello, world!</h1>"
+            };
+        }
     }
 }

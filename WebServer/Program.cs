@@ -18,9 +18,10 @@ namespace WebServer
     public static class Test
     {
         [HttpMethod("/favicon.ico", HttpMethodType.GET)]
-        public static void TestGet(HttpRequestInfo info)
+        public static void TestGet(HttpRequestInfo reqInfo, out HttpResponseInfo resInfo)
         {
             Console.WriteLine("Recieved a get request!");
+            resInfo = HttpResponseInfo.GetDefault();
         }
     }
 }

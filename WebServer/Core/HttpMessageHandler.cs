@@ -20,8 +20,15 @@ namespace WebServer.Core
             {
                 if (!method.IsStaticMethod())
                 {
-                    throw new Exception("Found non-static method with HttpMethod attribute. This is not allowed");
+                    throw new Exception($"Found non-static method {method.Name} with HttpMethod attribute. This is not allowed");
                 }
+
+                if (!method.ParameterCheck(typeof(HttpRequestInfo)))
+                {
+                    throw new Exception(
+                        $"Found method {method.Name} with HttpMethod attribute, but doesn't have a HttpRequestInfo parameter. This is not allowed.");
+                }
+                
                 foreach (var attribute in method.GetCustomAttributes())
                 {
                     var httpAtr = (HttpMethod) attribute;
