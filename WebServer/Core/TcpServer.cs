@@ -40,7 +40,7 @@ namespace WebServer.Core
 
         private void HandleTcpConnection(TcpClient client)
         {
-            var thread = new Thread(() =>
+            ThreadPool.QueueUserWorkItem((Object stateInfo) =>
             {
                 NetworkStream stream = client.GetStream();
 
@@ -55,10 +55,9 @@ namespace WebServer.Core
 
 
 
-               Console.WriteLine($"Buffer Length: {_incomingStream.Length}");
+                Console.WriteLine($"Buffer Length: {_incomingStream.Length}");
                 client.Close();
             });
-            thread.Start();
         }
     }
 }
