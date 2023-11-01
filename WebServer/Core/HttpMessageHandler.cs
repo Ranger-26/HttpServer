@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Sockets;
 using System.Reflection;
 using WebServer.Attributes;
 using WebServer.Extensions;
@@ -12,7 +13,7 @@ namespace WebServer.Core
     {
         private static Dictionary<HttpRequestLine, MethodInfo> _allMethods =
             new Dictionary<HttpRequestLine, MethodInfo>();
-
+        
         internal static void RegisterEndpoints()
         {
             _allMethods.Clear();
@@ -43,7 +44,7 @@ namespace WebServer.Core
             }
         }
 
-        internal static void TryInvokeMethod(HttpRequestInfo identifier)
+        internal static void TryInvokeMethod(HttpRequestInfo identifier, NetworkStream stream)
         {
             if (!_allMethods.ContainsKey(identifier.HttpRequestLine))
             {
@@ -51,7 +52,7 @@ namespace WebServer.Core
                 return;
             }
 
-            _allMethods[identifier.HttpRequestLine].Invoke(null, Array.Empty<object>());
+            _allMethods[identifier.HttpRequestLine].Invoke(null, new object[]{stream});
         }
     }
 }

@@ -48,20 +48,9 @@ namespace WebServer.Core
                 string data = System.Text.Encoding.ASCII.GetString(_incomingStream, 0, i);
                 Console.WriteLine("Received: " + Environment.NewLine + data);
 
-                HttpMessageHandler.TryInvokeMethod(data.GetHttpRequestInfo());
-                var result = "<h1>Hello, world!</h1>";
-                var sendBuf = Encoding.UTF8.GetBytes(
-                    "HTTP/1.0 200 OK" + Environment.NewLine
-                                      + "Content-Length: " + result.Length + Environment.NewLine
-                                      + "Content-Type: " + "text/html" + Environment.NewLine
-                                      + Environment.NewLine
-                                      + result
-                                      + Environment.NewLine + Environment.NewLine);
-                stream.Write(sendBuf, 0, sendBuf.Length);
-
-
-
-               Console.WriteLine($"Buffer Length: {_incomingStream.Length}");
+                HttpMessageHandler.TryInvokeMethod(data.GetHttpRequestInfo(), stream);
+                
+                Console.WriteLine($"Buffer Length: {_incomingStream.Length}");
                 client.Close();
             });
             thread.Start();
